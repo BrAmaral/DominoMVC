@@ -40,9 +40,6 @@ bool menuAcao(acao){
                 //Jogo Singleplayer... (Deletar o getchar() depois)
                 getchar();
             }
-            else {
-                printf("\nOpcao Invalida... Por favor tente novamente\n");
-            }
             break;
 
 		case 3:
