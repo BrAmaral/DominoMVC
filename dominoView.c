@@ -99,15 +99,6 @@ void mostrarBaralho(tipo_Peca Ppeca) // Onde essa funcao for chamada deve ter um
 
 
 
-void menuJogada()
-{
-	
-	printf("1) Jogar Peca		2) Comprar Peca 	3) Salvar e Sair	4) Sair sem Salvar\n");
-	printf(">");
-	
-}
-
-
 
 
 

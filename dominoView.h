@@ -9,6 +9,5 @@ int modoJogo();
 void regrasJogo();
 void mostrarPecasJogador(tipo_Peca Ppeca, int pecasJogador, int qtdPecas);    // PUXAR PECASJOGADOR DA FUNCAO PRINCIPAL
 void mostrarBaralho(tipo_Peca Ppeca);
-void menuJogada();
 
 #endif // DOMINOVIEW_H_INCLUDED

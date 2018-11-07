@@ -50,20 +50,27 @@ void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado
 	}
 }
 
-void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[20], int pecasComp[20])
+void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14])
 {
 	int i;
-	/*int pecasJogador[20];
-	int pecasComp[20];
-    */
-	for(i=0; i<7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
+	int k = 0;
+
+	for(i = 0; i < 7 ; i++){              //distribui as 7 primeiras pe�as para o jogador
 		pecasJogador[i] = PID[i];
 	}
 
-	for(i=7; i<14 ; i++){             //distribui as 7 seguintes pe�as para o computador
+	for(i = 7; i < 14 ; i++){             //distribui as 7 seguintes pe�as para o computador
 
-		pecasComp[i] = PID[i];
+		pecasComp[k] = PID[i];
+		k++;
 	}
+
+    k = 0;
+
+    for(i = 14; i < 28; i++){
+        pecasCompra[k] = PID[i];
+        k++;
+    }
 
 }
 
@@ -81,19 +88,20 @@ void jogoSingleplayerVirgem()
 {
     tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
     int PID[28];   // Criacao do ID de cada peca
-    int pecasJogador[20];  // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[20];     //Criacao do vetor que armazena as pecas do computador
+    int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];
 
     // 1) Gerar pecas dos jogadores
     gerarPecas(pecas);
 
-    // 2) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
-
-    // 3) Embaralhar Pecas
+    // 2) Embaralhar Pecas
     embaralharPecas(PID);
 
-    // 4) Distribuir Pecas
-    distribuirPecas(pecas, PID, pecasJogador, pecasComp);
+    // 3) Distribuir Pecas
+    distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
+
+    // 4) Escolher qual jogador comeca primeiro  (regra do 6:6 ou maior numero de repetidas)
 
     // 5) Rola o jogo       (Uma funcao com um conjunto de condicionais exercendo as regras do jogo)
     // 6) Desembaralha as pecas
