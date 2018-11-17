@@ -27,7 +27,10 @@ void gerarPecas(tipo_Peca pecas[28])
 		}
 		k = i + 1;
 	}
+	
+	printf("\nPecas geradas;");
 }
+
 
 void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado sempre que peças serão mostradas na tela
 {
@@ -49,7 +52,9 @@ void embaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças. Usado
         PID[i] = PID[randomico]; // Erro de segmentacao aqui
 		PID[randomico] = aux;
 	}
+	printf("\nPecas embaralhadas;");
 }
+
 
 void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14])
 {
@@ -72,8 +77,9 @@ void distribuirPecas(tipo_Peca pecas[28], int PID[28], int pecasJogador[21], int
         pecasCompra[k] = PID[i];
         k++;
     }
-
+	printf("\nPecas distribuidas;");
 }
+
 
 void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 {
@@ -136,14 +142,29 @@ int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]
 
 }
 
+
+int jogadas(tipo_Peca pecas[28]; int PID[28]; int pecasJogador[21]; int pecasComp[21], int pecasCompra[14]; int PrimeiroJogador){
+	
+	bool fimDoJogo = 0, fimDaRodada = 0;
+	
+	while(!fim){
+		
+		
+		
+	}
+	
+}
+
+
 void jogoSingleplayerVirgem()
 {
-    tipo_Peca pecas[28];       //Criacao do struct dentro do jogo
-    int PID[28];   // Criacao do ID de cada peca
-    int pecasJogador[21];  // Criacao do vetor que armazena as pecas do jogador
-    int pecasComp[21];     //Criacao do vetor que armazena as pecas do computador
-    int pecasCompra[14];
+    tipo_Peca pecas[28];	// Criacao do struct dentro do jogo
+    int PID[28];			// Criacao do ID de cada peca
+    int pecasJogador[21];	// Criacao do vetor que armazena as pecas do jogador
+    int pecasComp[21];		// Criacao do vetor que armazena as pecas do computador
+    int pecasCompra[14];	// Vetor que armazena o ID das pecas disponiveis para compra
     int PrimeiroJogador = 0;
+    int vencedor;			// Variavel que armazena o vencedor da partida
 
     // Procedimentos para iniciar o jogo
     gerarPecas(pecas);
@@ -151,10 +172,13 @@ void jogoSingleplayerVirgem()
     embaralharPecas(PID);
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
     PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra);
-    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
-
-
-    ///Dar opcao de parar no meio e salvar o progresso do jogo
+    
+	// Comeco efetivo do jogo
+	vencedor = jogadas(pecas; PID; pecasJogador; pecasComp; pecasCompra; PrimeiroJogador);
+	
+	desembaralharPecas(PID);
+    
+	///Dar opcao de parar no meio e salvar o progresso do jogo
     getchar();
 }
 

@@ -36,6 +36,7 @@ int mostrarMenuDomino()
     return Op;
 }
 
+
 int modoJogo()
 {
     bool modovalido = true;
@@ -59,33 +60,36 @@ int modoJogo()
     return modo;
 }
 
+
 void regrasJogo()
 {
 	printf("\n\t\t\t Regras do Jogo\n");
 	printf("----------------------------------------------------------------\n\n");
-	printf(" Cada jogador deve iniciar o jogo com 7 peÃ§as.\n");
-	printf(" O jogo jogador que inicia Ã© aquele que possui a peÃ§a 6:6.\n Caso nÃ£o tenha, inicia aquele com o dobre mais alto.\n");
-	printf(" O jogo ocorre em sentido anti-horÃ¡rio.\n");
-	printf(" Os jogadores devem colocar peÃ§as que tenham os mesmos nÃºmeros\n das peÃ§as que se encontram nas pontas do jogo.\n");
+	printf(" Cada jogador deve iniciar o jogo com 7 pecas.\n");
+	printf(" O jogo jogador que inicia Ã© aquele que possui a peÃ§a 6:6.\n Caso nao tenha, inicia aquele com o dobre mais alto.\n");
+	printf(" O jogo ocorre em sentido anti-horario.\n");
+	printf(" Os jogadores devem colocar pecas que tenham os mesmos numeros\n das pecas que se encontram nas pontas do jogo.\n");
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
 
-void mostrarPecasJogador(tipo_Peca Peca, int pecasJogador, int qtdPecas)
+
+void mostrarPecasJogador(tipo_Peca pecas[28], int pecasJogador, int qtdPecas)
 {
 
 	int i;
 
 	printf("\n");
 
-	for(i = 0; i < qtdPecas; i++){ // Display das peças da mesa
+	for(i = 0; i < qtdPecas; i++){ // Display das pecas da mesa
 
-		printf("|%d|%d|\t", Peca.num1, Peca.num2);
+		printf("|%d|%d|\t", pecas[i].num1, pecas[i].num2);
 
 	}
 
 	printf("\n");
 
 }
+
 
 int modoJogoSingle()
 {
@@ -97,11 +101,11 @@ int modoJogoSingle()
 		printf("\n**************************************************************\n\n");
 		printf(" 1 - Jogo Novo\n");
 		printf(" 2 - Carregar Jogo\n");
-		printf("Entre com uma das opções: ");
+		printf("Entre com uma das opcoes: ");
 		scanf("%d", &modoSingle);
 		if (modoSingle < 1 || modoSingle > 2){
 			modoValido = false;
-            printf("\n*******************OPÇâO INVALIDA!*******************\n");
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
         }
         else{
             modoValido = true;
@@ -123,11 +127,11 @@ int modoJogoMulti()
 		printf("\n**************************************************************\n\n");
 		printf(" 1 - Jogo Novo\n");
 		printf(" 2 - Carregar Jogo\n");
-		printf("Entre com uma das opções: ");
+		printf("Entre com uma das opcoes: ");
 		scanf("%d", &modoMulti);
 		if (modoMulti < 1 || modoMulti > 2){
 			modoValido = false;
-            printf("\n*******************OPÇâO INVALIDA!*******************\n");
+            printf("\n*******************OPCAO INVALIDA!*******************\n");
         }
         else{
             modoValido = true;

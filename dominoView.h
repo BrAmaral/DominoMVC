@@ -7,7 +7,7 @@
 int mostrarMenuDomino();
 int modoJogo();
 void regrasJogo();
-void mostrarPecasJogador(tipo_Peca Ppeca, int pecasJogador, int qtdPecas);    // PUXAR PECASJOGADOR DA FUNCAO PRINCIPAL
+void mostrarPecasJogador(tipo_Peca pecas[28], int pecasJogador, int qtdPecas);    // PUXAR PECASJOGADOR DA FUNCAO PRINCIPAL
 void mostrarBaralho(tipo_Peca Ppeca);
 int modoJogoSingle();
 int modoJogoMulti();

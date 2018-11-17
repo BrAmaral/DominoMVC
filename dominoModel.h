@@ -26,4 +26,5 @@ void jogoSingleplayerCarregado();    // "main" do jogo carregado por arquivo sin
 void jogoMultiplayerVirgem();         // "main" do jogo multiplayer
 void jogoMultiplayerCarregado();      // "main" do jogo carregado por arquivo multiplayer   (A ser implementada
 int comecarPrimeiro(int pecasJogador[21], int pecasComp[21], int pecasCompra[14]);
+int jogadas(tipo_Peca pecas[28]; int PID[28]; int pecasJogador[21]; int pecasComp[21], int pecasCompra[14]; int PrimeiroJogador);
 #endif
