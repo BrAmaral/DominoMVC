@@ -153,26 +153,21 @@ void pausaEstrategica()
     getchar();
 }
 
-void jogarPeca()
+/*void jogarPeca(int pecasJogador[21], int pecasMesa[56], int *PmesaDireita, int *PmesaEsquerda);
 {
 
-}
-
-void comprarPeca(int pecasJogador[21], int pecasCompra[14])
-{
-
-}
+}*/
 
 void mensagemDePrimeiro(int comeco){
 
 	switch(comeco){
 		case 1:
-			printf("\n Você jogou a primeira peça!\n\n");
+			printf("\nVocê jogou a primeira peça!\n\n");
 			pausaEstrategica();
 			limparTelaHibrido();
 			break;
 		case 2:
-			printf("\n Computador jogou a primeira peça\n\n");
+			printf("\nComputador jogou a primeira peça\n\n");
 			pausaEstrategica();
 			limparTelaHibrido();
 			break;

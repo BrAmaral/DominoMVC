@@ -189,14 +189,9 @@ void jogoSingleplayerVirgem()
     limparTelaHibrido();
 }
 
-/*void jogoMultiplayerVirgem()
-{
-
-}*/
-
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador)
 {
-    int vencedor = 0, acaoJogo = 0;
+    int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26;
     bool fimDoJogo = false;
 
     while(!fimDoJogo){
@@ -206,12 +201,12 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
        acaoJogo =  menuJogada(acaoJogo);
        switch(acaoJogo){
             case 1:         // Jogar peca
-                //jogarPeca();
+                //jogarPeca(pecasJogador, pecasMesa, &mesaDireita, &mesaEsquerda);
                 //Logo em seguida deve vir a jogada do computador
                 break;
 
             case 2:         //  Comprar peca
-                //comprarPeca();
+                comprarPeca(pecasJogador, pecasCompra);
                 //Jogador deve ter a possibilidade de comprar quando nao puder jogar
                 //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
                 break;
@@ -228,6 +223,31 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
     }
     return vencedor;
+
+}
+
+void comprarPeca(int pecasJogador[21], int pecasCompra[14])
+{
+    int qtdPecasJogador = 0, x = 0, qtdPecasCompra = 0;
+
+    for( x = 0; x < 21; x++)
+    {
+        if (pecasJogador[x] != -1)
+        {
+            qtdPecasJogador++;
+        }
+    }
+
+    for(x = 0; x < 14; x++)
+    {
+        if (pecasCompra[x] != -1)
+        {
+            qtdPecasCompra++;
+        }
+    }
+
+    pecasJogador[qtdPecasJogador] = pecasCompra[qtdPecasCompra-1];
+    pecasCompra[qtdPecasCompra - 1] = -1;
 
 }
 
