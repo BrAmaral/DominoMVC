@@ -10,7 +10,7 @@
 #include <locale.h>
 
 
-/// DECLARACAO DO STRUCT PARA ARMAZENAR AS PECAS DO JOGO
+// DECLARACAO DO STRUCT PARA ARMAZENAR AS PECAS DO JOGO
 typedef struct Peca{
 
 	int num1;	// Numero de um lado da peca

@@ -118,20 +118,32 @@ void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56])
     int i = 0;
     int p = 0;
 
-    printf("MESA:\n");
+    printf("MESA:\n\n");
     for(i; i < 56; i++)
     {
         if (pecasMesa[i] != -1)
         {
             p = pecasMesa[i];
-            printf("\n|%d|%d|\n\n", pecas[p].num1, pecas[p].num2);
+            printf(" |%d|%d|", pecas[p].num1, pecas[p].num2);
         }
     }
 }
 
-void mostrarPecasJogador()
+void mostrarPecasJogador(tipo_Peca pecas[28], int pecasJogador[21])
 {
+    int i = 0;
+    int p = 0;
 
+    printf("\n\n**********************************************\n\nSUAS PECAS:\n\n");
+    for(i; i < 21; i++)
+    {
+        if (pecasJogador[i] != -1)
+        {
+            p = pecasJogador[i];
+            printf("%d) |%d|%d|\n", i+1, pecas[p].num1, pecas[p].num2);
+        }
+    }
+    printf("\n\n");
 }
 
 void pausaEstrategica()
@@ -139,4 +151,43 @@ void pausaEstrategica()
     printf("\n\nPressione ENTER para continuar...\n\n");
     setbuf(stdin,NULL);
     getchar();
+}
+
+void jogarPeca()
+{
+
+}
+
+void comprarPeca(int pecasJogador[21], int pecasCompra[14])
+{
+
+}
+
+void mensagemDePrimeiro(int comeco){
+
+	switch(comeco){
+		case 1:
+			printf("\n Você jogou a primeira peça!\n\n");
+			pausaEstrategica();
+			limparTelaHibrido();
+			break;
+		case 2:
+			printf("\n Computador jogou a primeira peça\n\n");
+			pausaEstrategica();
+			limparTelaHibrido();
+			break;
+	}
+}
+
+void mensagemFinalJogo(int vencedor){
+
+	switch(vencedor){
+		case 1:
+			printf("\n\n\t\tVOCÊ GANHOU!!!");
+			break;
+		case 2:
+			printf("\n\n\t\tVOCÊ PERDEU!!!");
+			break;
+	}
+
 }
