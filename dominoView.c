@@ -153,10 +153,13 @@ void pausaEstrategica()
     getchar();
 }
 
-/*void jogarPeca(int pecasJogador[21], int pecasMesa[56], int *PmesaDireita, int *PmesaEsquerda);
+void escolhaPeca()
 {
-
-}*/
+    int escolha = 0;
+    printf("\nQual peca voce deseja jogar?\n>>");
+    scanf("%d", &escolha);
+    return escolha;
+}
 
 void mensagemDePrimeiro(int comeco){
 
@@ -184,5 +187,10 @@ void mensagemFinalJogo(int vencedor){
 			printf("\n\n\t\tVOCÊ PERDEU!!!");
 			break;
 	}
+
+}
+
+int ladoDaMesa(int pecasMesa[56], pecasJogador[21], int *PmesaDireita, int *PmesaEsquerda)
+{
 
 }

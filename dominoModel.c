@@ -182,8 +182,6 @@ void jogoSingleplayerVirgem()
     distribuirPecas(pecas, PID, pecasJogador, pecasComp, pecasCompra);
     PrimeiroJogador = comecarPrimeiro(pecasJogador, pecasComp, pecasCompra, pecasMesa);
 
-    //desembaralharPecas(PID);          // Usar quando achar que deve desembaralhar e deixar bonitinho quando o jogo acabar
-
     // Jogo
     vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador);
     limparTelaHibrido();
@@ -191,7 +189,7 @@ void jogoSingleplayerVirgem()
 
 int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador)
 {
-    int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26;
+    int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26, escolha = 0;
     bool fimDoJogo = false;
 
     while(!fimDoJogo){
@@ -201,13 +199,13 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
        acaoJogo =  menuJogada(acaoJogo);
        switch(acaoJogo){
             case 1:         // Jogar peca
-                //jogarPeca(pecasJogador, pecasMesa, &mesaDireita, &mesaEsquerda);
+                escolha = escolhaPeca();
+                jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &escolha);
                 //Logo em seguida deve vir a jogada do computador
                 break;
 
             case 2:         //  Comprar peca
                 comprarPeca(pecasJogador, pecasCompra);
-                //Jogador deve ter a possibilidade de comprar quando nao puder jogar
                 //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
                 break;
 
@@ -215,6 +213,7 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
                 break;
 
             case 4:         // Menu principal
+                desembaralharPecas(PID);
                 fimDoJogo = true;
                 break;
 
@@ -224,6 +223,12 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
     }
     return vencedor;
 
+}
+
+void jogarPeca(tipo_Peca pecas, int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int *Pescolha)
+{
+    int lado = 0;
+    lado = ladoDaMesa(pecasMesa, pecasJogador, int *PmesaDireita, int *PmesaEsquerda);
 }
 
 void comprarPeca(int pecasJogador[21], int pecasCompra[14])
