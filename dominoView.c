@@ -194,3 +194,8 @@ int ladoDaMesa(int pecasMesa[56], pecasJogador[21], int *PmesaDireita, int *Pmes
 {
 
 }
+
+void modoIndisponivel(){
+		
+	printf("\n\n\tMODO DE JOGO INDISPONÍVEL");
+}
