@@ -13,6 +13,7 @@ void pausaEstrategica();                    // Pausa o programa e espera o usuar
 void escolhaPeca();                         // Jogador escolhe uma peca que esta em sua mao.
 void mensagemDePrimeiro(int comeco);        // Imprime uma mensagem dizendo quem comecou o jogo.
 void mensagemFinalJogo(int vencedor);       // Imprime uma mensagem de fim de jogo.
+void modoIndisponivel();                    // Imprime uma mensagem que o modo está indisponivel no momento.
 
 //FUNCOES TIPO INT
 int mostrarMenuPrincipal();             // Imprime o menu principal.
