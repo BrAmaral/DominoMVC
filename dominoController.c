@@ -45,7 +45,8 @@ bool switAcao(int acao)
             else if (modo == 2)
             {
                 limparTelaHibrido();
-                //jogoMultiplayerVirgem();      //Falta ser implementada
+                modoIndisponivel();
+		//jogoMultiplayerVirgem();      //Falta ser implementada
             }
             break;
 
@@ -54,11 +55,13 @@ bool switAcao(int acao)
             if (modo == 1)
             {
                 limparTelaHibrido();
+		modoIndisponivel();
                 //jogoSingleplayerCarregado();      //Falta ser implementada
             }
             else if (modo == 2)
             {
                 limparTelaHibrido();
+		modoIndisponivel();
                 //jogoMultiplayerCarregado();       //Falta ser implementada
             }
             break;
