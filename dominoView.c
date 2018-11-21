@@ -153,7 +153,7 @@ void pausaEstrategica()
     getchar();
 }
 
-void escolhaPeca()
+int escolhaPeca()
 {
     int escolha = 0;
     printf("\nQual peca voce deseja jogar?\n>>");
@@ -190,12 +190,12 @@ void mensagemFinalJogo(int vencedor){
 
 }
 
-int ladoDaMesa(int pecasMesa[56], pecasJogador[21], int *PmesaDireita, int *PmesaEsquerda)
+int ladoDaMesa(int pecasMesa[56], int pecasJogador[21], int *PmesaDireita, int *PmesaEsquerda)
 {
 
 }
 
 void modoIndisponivel(){
-		
+
 	printf("\n\n\tMODO DE JOGO INDISPONÍVEL");
 }
