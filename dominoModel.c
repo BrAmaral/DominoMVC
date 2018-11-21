@@ -225,10 +225,10 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
 }
 
-void jogarPeca(tipo_Peca pecas, int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int *Pescolha)
+void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int *Pescolha)
 {
     int lado = 0;
-    lado = ladoDaMesa(pecasMesa, pecasJogador, int *PmesaDireita, int *PmesaEsquerda);
+    lado = ladoDaMesa(pecasMesa, pecasJogador, &PmesaDireita, &PmesaEsquerda);
 }
 
 void comprarPeca(int pecasJogador[21], int pecasCompra[14])
