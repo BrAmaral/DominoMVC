@@ -20,6 +20,6 @@ void perguntarLado();						// Imprime uma mensagem que pergunta de que lado o jo
 int mostrarMenuPrincipal();             // Imprime o menu principal.
 int modoJogo();                         // Imprime menu de selecao do modo de jogo (Singleplayer ou Multiplayer) e retorna 1 para Singleplayer e 2 para Multiplayer.
 int menuJogada(int acaoJogo);           // Imprime o menu de jogada (Opcoes que o jogador tem durante o jogo).
-int escolhaPeca();                         // Jogador escolhe uma peca que esta em sua mao.
+int escolhaPeca();                      // Jogador escolhe uma peca que esta em sua mao.
 
 #endif // DOMINOVIEW_H_INCLUDED

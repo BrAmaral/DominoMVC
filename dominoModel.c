@@ -85,7 +85,7 @@ void desembaralharPecas(int PID[28]) // pecas[28] se refere ao ID das peças
 
 }
 
-int comecarPrimeiro(tipo_Peca pecas[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int qtdPecasJogador, int qtdPecasComp){
+int comecarPrimeiro(tipo_Peca pecas[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int *PvalorEsquerda, int *PvalorDireita){
 
     int i, j, k = 1;
 	int maiorPecaJog1 = -1, maiorPecaComp = -1;     // para decidir quem é o primeiro a jogar, comparar e ver qual é maior
@@ -178,8 +178,8 @@ void jogoSingleplayerVirgem()
     int PrimeiroJogador = 0;   // Variavel que determina qual eh o primeiro jogador
     int vencedor = 0;          // Variavel que determina qual eh o vencedor ( 1 para jogador1 e 2 para jogador2 ou Comp)
     int valorEsquerda = -999, valorDireita = -999;
-    int qtdPecasJogador = 7;
-    int qtdPecasComp = 7;
+    int qtdPecasJogador = 0;
+    int qtdPecasComp = 0;
 
     // Procedimentos para iniciar o jogo
     zerarVetorPecas(pecasMesa);
@@ -191,15 +191,15 @@ void jogoSingleplayerVirgem()
     pausaEstrategica();
     embaralharPecas(PID);
     distribuirPecas(PID, pecasJogador, pecasComp, pecasCompra);
-    PrimeiroJogador = comecarPrimeiro(pecas, pecasJogador, pecasComp, pecasCompra, pecasMesa, &valorEsquerda, &valorDireita, qtdPecasJogador, qtdPecasComp);
+    PrimeiroJogador = comecarPrimeiro(pecas, pecasJogador, pecasComp, pecasCompra, pecasMesa, &valorEsquerda, &valorDireita);
 
     // Jogo
-    vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador, posicaoPecasMesa, &valorEsquerda, &valorDireita, qtdPecasJogador, qtdPecasComp);
+    vencedor = JogoSingle(pecas, PID, pecasJogador, pecasComp, pecasCompra, pecasMesa, PrimeiroJogador, posicaoPecasMesa, &valorEsquerda, &valorDireita, &qtdPecasJogador, &qtdPecasComp);
     pausaEstrategica();
     limparTelaHibrido();
 }
 
-int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador, int posicaoPecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int qtdPecasJogador, int qtdPecasComp)
+int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasComp[21], int pecasCompra[14], int pecasMesa[56], int PrimeiroJogador, int posicaoPecasMesa[56], int *PvalorEsquerda, int *PvalorDireita, int *PqtdPecasJogador, int *PqtdPecasComp)
 {
     int vencedor = 0, acaoJogo = 0, mesaDireita = 28, mesaEsquerda = 26, escolha = 0;
     bool fimDoJogo = false;
@@ -213,12 +213,12 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
        switch(acaoJogo){
             case 1:         // Jogar peca
             	// Retirei escolhaPeca() e coloquei dentro de jogarPeca, porque precisa estar dentro de um loop
-                jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, qtdPecasJogador);
+                jogarPeca(pecas, pecasJogador, pecasMesa, &mesaEsquerda, &mesaDireita, &PvalorEsquerda, &PvalorDireita, posicaoPecasMesa, &PqtdPecasJogador);
                 //Logo em seguida deve vir a jogada do computador
                 break;
 
             case 2:         //  Comprar peca
-                comprarPeca(pecasJogador, pecasCompra);
+                comprarPeca(pecasJogador, pecasCompra, &PqtdPecasJogador);
                 //Mostrar aviso quando o jogador nao puder comprar mais, por ter pecas que podem ser jogadas
                 break;
 
@@ -238,7 +238,7 @@ int JogoSingle(tipo_Peca pecas[28],int PID[28], int pecasJogador[21], int pecasC
 
 }
 
-void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int **PvalorEsquerda, int **PvalorDireita, int posicaoPecasMesa[56], int qtdPecasJogador)
+void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int *PmesaEsquerda, int *PmesaDireita, int **PvalorEsquerda, int **PvalorDireita, int posicaoPecasMesa[56], int **PqtdPecasJogador)
 {
 	int escolha;
     int lado = -1;
@@ -256,14 +256,16 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
     	if(lado == 0){ // Se a jogada ocorrer na esquerda
     		aux = pecasJogador[escolha - 1]; // Auxiliar assume o ID da pe�a jogada
     		if(pecas[aux].num1 == **PvalorEsquerda){
-    			posicaoPecasMesa[*PmesaEsquerda] = 1;
-    			pecasMesa[*PmesaEsquerda] = aux;
-    			*PmesaEsquerda--;
-    			jogadaPossivel = true;
-			}else if(pecas[aux].num2 == **PvalorEsquerda){
     			posicaoPecasMesa[*PmesaEsquerda] = 2;
     			pecasMesa[*PmesaEsquerda] = aux;
     			*PmesaEsquerda--;
+    			**PvalorEsquerda = pecas[aux].num2;
+    			jogadaPossivel = true;
+			}else if(pecas[aux].num2 == **PvalorEsquerda){
+    			posicaoPecasMesa[*PmesaEsquerda] = 1;
+    			pecasMesa[*PmesaEsquerda] = aux;
+    			*PmesaEsquerda--;
+    			**PvalorEsquerda = pecas[aux].num1;
     			jogadaPossivel = true;
 			}
 		}
@@ -273,21 +275,24 @@ void jogarPeca(tipo_Peca pecas[28], int pecasJogador[21], int pecasMesa[56], int
     			posicaoPecasMesa[*PmesaDireita] = 1; // O valor da esquerda eh o num1
     			pecasMesa[*PmesaDireita] = aux;
     			*PmesaDireita++;
+    			**PvalorDireita = pecas[aux].num2;
     			jogadaPossivel = true;
 			}else if(pecas[aux].num2 == **PvalorDireita){
     			posicaoPecasMesa[*PmesaDireita] = 2; // O valor da esquerda eh o num2
     			pecasMesa[*PmesaDireita] = aux;
     			*PmesaDireita++;
+    			**PvalorDireita = pecas[aux].num1;
     			jogadaPossivel = true;
 			}
 		}
 
 		if(jogadaPossivel == true){
-			for(i = escolha - 1; i < qtdPecasJogador; i++){
+			for(i = escolha - 1; i < **PqtdPecasJogador; i++){
 				pecasJogador[i] = pecasJogador[i + 1];
-				pecasJogador[qtdPecasJogador] = -1;
+				pecasJogador[**PqtdPecasJogador] = -1;
 			}
 		}
+		**PqtdPecasJogador--;
 
 		if(jogadaPossivel == false){
 			jogadaImpossivel();
@@ -313,15 +318,15 @@ int ladoDaMesa()
 	return ladoEscolhido;
 }
 
-void comprarPeca(int pecasJogador[21], int pecasCompra[14])
+void comprarPeca(int pecasJogador[21], int pecasCompra[14], int **PqtdPecasJogador)
 {
-    int qtdPecasJogador = 0, x = 0, qtdPecasCompra = 0;
-
+	int qtdPecasCompra = 0, x = 0;
+	
     for( x = 0; x < 21; x++)
     {
         if (pecasJogador[x] != -1)
         {
-            qtdPecasJogador++;
+            **PqtdPecasJogador++;
         }
     }
 
@@ -333,7 +338,7 @@ void comprarPeca(int pecasJogador[21], int pecasCompra[14])
         }
     }
     if (qtdPecasCompra != 0){
-        pecasJogador[qtdPecasJogador] = pecasCompra[qtdPecasCompra-1];
+        pecasJogador[**PqtdPecasJogador] = pecasCompra[qtdPecasCompra-1];
         pecasCompra[qtdPecasCompra - 1] = -1;
     }
 
