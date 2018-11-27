@@ -21,12 +21,12 @@ int mostrarMenuPrincipal()
         printf(" 3 - Carregar jogo\n");
         printf(" 4 - Sair do jogo\n");
         printf("\n");
-        printf(" Entre com uma das op√ß√µes: ");
+        printf(" Entre com uma das opÁıes: ");
         scanf("%d", &Op);
         if (Op < 1 || Op > 4)
         {
             limparTelaHibrido();
-            printf("\n*******************OP√á√ÉO INV√ÅLIDA!*******************\n");
+            printf("\n*******************OP«√O INV¡LIDA!*******************\n");
             printf("Pressione Enter para continuar...");
             setbuf(stdin,NULL);
             getchar();
@@ -58,7 +58,7 @@ int modoJogo()
         if (modo < 1 || modo > 2)
         {
             limparTelaHibrido();
-            printf("\n*******************OP√á√ÉO INV√ÅLIDA!*******************\n");
+            printf("\n*******************OP«√O INV¡LIDA!*******************\n");
             printf("Pressione Enter para continuar...");
             setbuf(stdin,NULL);
             getchar();
@@ -79,16 +79,16 @@ void regrasJogo()
 {
 	printf("\n\t\t\t Regras do Jogo\n");
 	printf("----------------------------------------------------------------\n\n");
-	printf(" Cada jogador deve iniciar o jogo com 7 pe√ßas.\n");
-	printf(" O jogador que possuir a pe√ßa 6:6 faz a primeira jogada.\n Caso nenhum jogador possua a pe√ßa 6:6, inicia aquele com o dobre\n(1:1, 2:2, 3:3, 4:4, 5:5) mais alto.\n");
-	printf(" O jogo ocorre em sentido anti-hor√°rio.\n");
-	printf(" Os jogadores devem colocar pe√ßas que tenham os mesmos n√∫meros\n das pe√ßas que se encontram nas pontas do jogo.\n");
+	printf(" Cada jogador deve iniciar o jogo com 7 peÁas.\n");
+	printf(" O jogador que possuir a peÁa 6:6 faz a primeira jogada.\n Caso nenhum jogador possua a peÁa 6:6, inicia aquele com o dobre\n(1:1, 2:2, 3:3, 4:4, 5:5) mais alto.\n");
+	printf(" O jogo ocorre em sentido anti-hor·rio.\n");
+	printf(" Os jogadores devem colocar peÁas que tenham os mesmos n˙meros\n das peÁas que se encontram nas pontas do jogo.\n");
     printf("\nAperte a tecla ENTER para retornar ao menu...");
 }
 
 int menuJogada(int acaoJogo)
 {
-	printf("1) Jogar Pe√ßa   2) Comprar Pe√ßa     3) Salvar   4) Menu Principal\n");
+	printf("1) Jogar PeÁa   2) Comprar PeÁa   3) Salvar   4) Menu Principal\n");
 	printf(">> ");
 	scanf("%d", &acaoJogo);
 	return acaoJogo;
@@ -99,7 +99,7 @@ void mostrarPecas(tipo_Peca pecas[28])
 {
 	int i, j, k = 0, o = 0;
 
-	printf("Pe√ßas do jogo: \n");
+	printf("PeÁas do jogo: \n");
 	for(i = 0; i < 7; i++)
 	{
 		printf("\n");
@@ -113,7 +113,7 @@ void mostrarPecas(tipo_Peca pecas[28])
 	}
 }
 
-void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56])
+void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56], int posicaoPecasMesa[56])
 {
     int i = 0;
     int p = 0;
@@ -123,8 +123,14 @@ void mostrarMesa(tipo_Peca pecas[28], int pecasMesa[56])
     {
         if (pecasMesa[i] != -1)
         {
-            p = pecasMesa[i];
-            printf(" |%d|%d|", pecas[p].num1, pecas[p].num2);
+        	if(posicaoPecasMesa[i] == 1){
+            	p = pecasMesa[i];
+            	printf(" |%d|%d|", pecas[p].num1, pecas[p].num2);
+            	
+        	}else if(posicaoPecasMesa[i] == 2){
+        		p = pecasMesa[i];
+            	printf(" |%d|%d|", pecas[p].num2, pecas[p].num1);
+			}
         }
     }
 }
@@ -134,7 +140,7 @@ void mostrarPecasJogador(tipo_Peca pecas[28], int pecasJogador[21])
     int i = 0;
     int p = 0;
 
-    printf("\n\n**********************************************\n\nSUAS PECAS:\n\n");
+    printf("\n\n**********************************************\n\nSUAS PE«AS:\n\n");
     for(i; i < 21; i++)
     {
         if (pecasJogador[i] != -1)
@@ -156,7 +162,7 @@ void pausaEstrategica()
 int escolhaPeca()
 {
     int escolha = 0;
-    printf("\nQual peca voce deseja jogar?\n>>");
+    printf("\nQual peca voce deseja jogar? (0 se deseja cancelar)\n>> ");
     scanf("%d", &escolha);
     return escolha;
 }
@@ -165,12 +171,12 @@ void mensagemDePrimeiro(int comeco){
 
 	switch(comeco){
 		case 1:
-			printf("\nVoc√™ jogou a primeira pe√ßa!\n\n");
+			printf("\nVocÍ jogou a primeira peÁa!\n\n");
 			pausaEstrategica();
 			limparTelaHibrido();
 			break;
 		case 2:
-			printf("\nComputador jogou a primeira pe√ßa\n\n");
+			printf("\nComputador jogou a primeira peÁa\n\n");
 			pausaEstrategica();
 			limparTelaHibrido();
 			break;
@@ -181,10 +187,10 @@ void mensagemFinalJogo(int vencedor){
 
 	switch(vencedor){
 		case 1:
-			printf("\n\n\t\tVOC√ä GANHOU!!!");
+			printf("\n\n\t\tVOC  GANHOU!!!");
 			break;
 		case 2:
-			printf("\n\n\t\tVOC√ä PERDEU!!!");
+			printf("\n\n\t\tVOC  PERDEU!!!");
 			break;
 	}
 
@@ -192,7 +198,17 @@ void mensagemFinalJogo(int vencedor){
 
 void modoIndisponivel(){
 
-	printf("\n\n\tMODO DE JOGO INDISPON√çVEL");
+	printf("\n\n\tMODO DE JOGO INDISPONÕVEL");
 	pausaEstrategica();
 	limparTelaHibrido();
+}
+
+void jogadaImpossivel(){
+	printf("\n\nJOGADA IMPOSSÕVEL\n");
+}
+
+void perguntarLado()
+{
+	printf("\n\nJogar a peÁa em que lado? (esquerda = 0; direita = 1)");
+	printf("\n>> ");
 }
