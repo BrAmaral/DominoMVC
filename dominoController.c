@@ -30,8 +30,7 @@ bool switAcao(int acao)
 	switch(acao){
         case 1:             //Regras do jogo
             regrasJogo();
-            setbuf(stdin,NULL);
-            getchar();
+            pausaEstrategica();
             limparTelaHibrido();
             break;
 
@@ -55,13 +54,13 @@ bool switAcao(int acao)
             if (modo == 1)
             {
                 limparTelaHibrido();
-		modoIndisponivel();
+                modoIndisponivel();
                 //jogoSingleplayerCarregado();      //Falta ser implementada
             }
             else if (modo == 2)
             {
                 limparTelaHibrido();
-		modoIndisponivel();
+                modoIndisponivel();
                 //jogoMultiplayerCarregado();       //Falta ser implementada
             }
             break;
